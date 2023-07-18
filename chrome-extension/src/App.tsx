@@ -4,7 +4,7 @@ import SubmitRecipe from "./pages/SubmitRecipe";
 
 function App() {
   return (
-    <div className="w-[400px] min-h-[500px] p-6 bg-primary rounded-lg relative">
+    <div className="w-[400px] min-h-[500px] p-6 bg-primary relative">
       <HashRouter>
         <Routes>
           <Route path="/" element={<Home />} />

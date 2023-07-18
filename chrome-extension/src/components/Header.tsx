@@ -13,7 +13,7 @@ export default function Header({ recipe }: Props) {
     <div className="flex justify-between items-center py-4">
       <div className="flex justify-start items-center gap-2">
         <FlagIcon origin={recipe?.origin} />
-        <p className="text-white font-medium">{recipe?.name}</p>
+        <p className="text-white font-medium capitalize">{recipe?.name}</p>
       </div>
       <div className="flex justify-end items-center gap-1">
         {Array(3)

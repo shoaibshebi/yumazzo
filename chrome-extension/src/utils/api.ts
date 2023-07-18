@@ -4,7 +4,8 @@ import { create } from "apisauce";
 import qs from "query-string";
 
 const request = async (method: string, path: string, data?: any) => {
-  const baseURL = process.env.REACT_APP_API_URL;
+  const baseURL =
+    "https://master-7rqtwti-yj2le3kr2yhmu.uk-1.platformsh.site/yumazoo/";
 
   const client = create({
     baseURL,
@@ -13,6 +14,7 @@ const request = async (method: string, path: string, data?: any) => {
     },
   });
 
+  // debugger;
   let response = undefined;
   try {
     if (
@@ -80,4 +82,12 @@ const request = async (method: string, path: string, data?: any) => {
   return response.data;
 };
 
-export default request;
+const fetchDataHandler = async () => {
+  let res = await fetch(
+    "https://master-7rqtwti-yj2le3kr2yhmu.uk-1.platformsh.site/yumazoo/recipes"
+  );
+
+  res = await res.json();
+  return res;
+};
+export { request, fetchDataHandler };

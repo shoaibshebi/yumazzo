@@ -1,5 +1,5 @@
 import { IRecipe } from "../interfaces/interfaces";
-import request from "../utils/api";
+import { request } from "../utils/api";
 
 export default function useRecipe() {
   const getRecipes = async () => {

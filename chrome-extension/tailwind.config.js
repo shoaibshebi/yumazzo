@@ -1,6 +1,6 @@
 /** @type {import('tailwindcss').Config} */
-
-module.exports = {
+const withMT = require("@material-tailwind/react/utils/withMT");
+module.exports = withMT({
   variants: {
     extend: {
       placeholder: ["focus", "hover"],
@@ -30,9 +30,10 @@ module.exports = {
       black: "#000000",
       white: "#ffffff",
       transparent: "transparent",
+      lightTrans: "#2e334786",
       label: "#7185AA",
       success: "#198F51",
     },
   },
   plugins: [],
-};
+});

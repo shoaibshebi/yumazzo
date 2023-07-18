@@ -5,7 +5,6 @@ import Loader from "../components/Loader";
 import Page404 from "../components/Page404";
 import useRecipe from "../customHooks/useRecipe";
 import { IRecipe } from "../interfaces/interfaces";
-import { useRenderOnce } from "../customHooks/useRenderOnce";
 
 function Home() {
   const { getRecipes } = useRecipe();

@@ -1,23 +1,29 @@
-import { FormEvent, useState, ChangeEvent } from "react";
+import { FormEvent, useState, ChangeEvent, useMemo } from "react";
 import { Link } from "react-router-dom";
+import { CheckIcon } from "@heroicons/react/24/outline";
+import countryList from "react-select-country-list";
+
 import Input from "../components/reusable/Input";
-import { authenticities, difficulties, origins } from "../utils/consts";
+import { authenticities, difficulties } from "../utils/consts";
 import useRecipe from "../customHooks/useRecipe";
 import { capitalize } from "../utils/utils";
-import { CheckIcon } from "@heroicons/react/24/outline";
+import { Spinner } from "@material-tailwind/react";
 
 export default function SubmitRecipe() {
-  const [open, setOpen] = useState(true);
+  const [open, setOpen] = useState(false);
+  const [loading, setLoading] = useState(false);
   const [errorField, setErrorField] = useState<{ field: string; msg: string }>({
     field: "",
     msg: "",
   });
 
+  const origins = useMemo(() => countryList().getData(), []);
+
   const { submitRecipe } = useRecipe();
 
   const defaultRecipe = {
     name: "",
-    origin: origins[0].code,
+    origin: origins[0].value,
     description: "",
     difficulty: 0,
     protein: "",
@@ -53,11 +59,13 @@ export default function SubmitRecipe() {
 
   const onSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    setLoading(true);
     const res = await submitRecipe(recipe);
 
     if (res?.message) {
       setRecipe(defaultRecipe);
       setOpen(true);
+
       setTimeout(() => setOpen(false), 3000);
       setErrorField({ field: "", msg: "" });
     } else if (res?.detail) {
@@ -66,6 +74,7 @@ export default function SubmitRecipe() {
         msg: res.detail[0].msg,
       });
     }
+    setLoading(false);
   };
 
   return (
@@ -76,7 +85,7 @@ export default function SubmitRecipe() {
           Add new recipe
         </p>
       </Link>
-      <hr className="text-[#2E3347] my-3" />
+      <div className="bg-[#2e3347db] my-3 h-0.5"></div>
       <form onSubmit={onSubmit} className="my-2">
         <div className="flex justify-between items-center gap-3">
           <Input
@@ -194,13 +203,11 @@ export default function SubmitRecipe() {
             "{capitalize(errorField.field)}": {capitalize(errorField.msg)}
           </p>
         )}
-        {open ? (
-          <input
-            type="submit"
-            className="bg-[#764AF4] text-white w-full mt-6 rounded-md py-2 cursor-pointer"
-            value={"Add Recipe"}
-          />
-        ) : (
+        {loading ? (
+          <div className="w-full text-center flex justify-center">
+            <Spinner className=" w-8 h-8 mt-6  text-center" />
+          </div>
+        ) : open ? (
           <div className="relative">
             <input
               type="submit"
@@ -210,6 +217,12 @@ export default function SubmitRecipe() {
             />
             <CheckIcon className="text-white absolute right-28 top-[32px] h-5 w-5 " />
           </div>
+        ) : (
+          <input
+            type="submit"
+            className="bg-[#764AF4] text-white w-full mt-6 rounded-md py-2 cursor-pointer"
+            value={"Add Recipe"}
+          />
         )}
       </form>
     </div>

@@ -1,4 +1,6 @@
-import React, { ChangeEvent } from "react";
+// @ts-nocheck
+import { Option, Select } from "@material-tailwind/react";
+import { ChangeEvent } from "react";
 
 interface Props {
   label: string;
@@ -41,7 +43,7 @@ export default function Input({
           <textarea
             value={value}
             onChange={onChange}
-            className="bg-[#181F30] border border-[#5B6178] rounded-md outline-none text-[#E9EAF6] px-3 py-2 mt-2 w-full text-base"
+            className="bg-[#181F30] border border-[#5B6178] rounded-md outline-none text-[#E9EAF6] px-3 py-2 mt-1 w-full text-base"
             placeholder={placeholder}
             maxLength={200}
             required={required}
@@ -52,20 +54,27 @@ export default function Input({
           </p>
         </>
       ) : type === "select" && keys ? (
-        <select
+        <Select
           value={value}
           required={required}
-          onChange={onChange}
+          onClick={(e: any) => onChange(e)}
           name={name}
-          className="bg-[#181F30] border border-[#5B6178] rounded-md outline-none text-[#E9EAF6] px-3 py-2 mt-2 w-full text-base"
+          label=""
+          variant="standard"
+          className="[&_span]:top-[37%] [&_span]:left-[10px]  bg-[#181F30] text-[#E9EAF6] border rounded-md border-[#5B6178] "
         >
-          <option disabled>Select {label}</option>
-          {options?.map((option: any, key) => (
-            <option value={option[keys.value]}>{option[keys.text]}</option>
-          ))}
-        </select>
+          {label === "Origin*"
+            ? options?.map((option: any) => (
+                <Option value={option.value} className="">
+                  {option.label}
+                </Option>
+              ))
+            : options?.map((option: any) => (
+                <Option value={option[keys.value]}>{option[keys.text]}</Option>
+              ))}
+        </Select>
       ) : (
-        <div className="bg-[#181F30] border border-[#5B6178] px-3 rounded-md flex items-center gap-1 mt-2">
+        <div className="bg-[#181F30] border border-[#5B6178] px-3 rounded-md flex items-center gap-1 mt-1">
           <input
             type={type}
             min={0}

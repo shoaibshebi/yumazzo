@@ -1,7 +1,7 @@
 # Yumazzo - Chrome - Extension 🧩
 
 <p align="center">
-  <img src="./ShowCase/1.png" alt="img">
+  <img src="./ShowCase/0.png" alt="img">
 </p>
 
 #### Note related commits & docs: Emojies in commits and docs, make the dry-code world a bit joyfull
