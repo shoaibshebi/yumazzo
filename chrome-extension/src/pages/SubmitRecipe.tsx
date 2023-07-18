@@ -4,7 +4,7 @@ import Input from "../components/reusable/Input";
 import { authenticities, difficulties, origins } from "../utils/consts";
 import useRecipe from "../customHooks/useRecipe";
 import { capitalize } from "../utils/utils";
-import { FaCheck } from "react-icons/fa";
+import { CheckIcon } from "@heroicons/react/24/outline";
 
 export default function SubmitRecipe() {
   const [open, setOpen] = useState(true);
@@ -208,7 +208,7 @@ export default function SubmitRecipe() {
               className="bg-success text-white w-full mt-6 rounded-md py-2 "
               value={"Submitted"}
             />
-            <FaCheck className="text-white absolute right-28 top-[35px]" />
+            <CheckIcon className="text-white absolute right-28 top-[32px] h-5 w-5 " />
           </div>
         )}
       </form>

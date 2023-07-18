@@ -1,3 +1,5 @@
+// @ts-nocheck
+
 const _decConv = (num, dec) => {
   return (num / +dec)?.toFixed(4)?.toString();
 };

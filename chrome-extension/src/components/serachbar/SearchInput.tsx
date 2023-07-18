@@ -1,21 +1,15 @@
-import { FaSearch } from "react-icons/fa";
-import { IconBaseProps } from "react-icons";
+import { MagnifyingGlassIcon } from "@heroicons/react/24/outline";
 
 interface Props {
   value: string | number | readonly string[] | undefined;
   changeValue: Function;
 }
 
-interface IconProps {
-  iconProps: IconBaseProps;
-}
-
-function SearchInput({ value, changeValue }: Props, iconProps: IconProps) {
+function SearchInput({ value, changeValue }: Props) {
   return (
     <div className="relative ">
-      <div className="absolute top-0 left-0 mt-3 ml-3 text-white">
-        <FaSearch {...iconProps.iconProps} />
-      </div>
+      <MagnifyingGlassIcon className="absolute top-0 left-0 mt-3 ml-3 h-5 w-5 text-white" />
+
       <input
         type="text"
         className=" text-white text-base px-3 py-2 bg-[#131823] pl-9 font-helvetica-neue outline-none rounded-md w-full shadow-sm border-[#5B6178] border placeholder-[#737992]"

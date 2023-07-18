@@ -1,14 +1,16 @@
+// @ts-nocheck
 import React from "react";
 import ReactDOM from "react-dom/client";
 import "./index.css";
 import App from "./App";
 
-const rootElement = document.createElement("div");
-rootElement.id = "chrome-extension";
+// const rootElement = document.createElement("div");
+// rootElement.id = "chrome-extension";
+const rootElement = document.getElementById("chrome-extension");
 
 const globalStyles = document.createElement("style");
 globalStyles.innerHTML = `
-  #${rootElement.id} {
+  #chrome-extension {
   position: fixed;
   left: 0;
   top: 0;

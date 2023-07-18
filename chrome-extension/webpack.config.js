@@ -1,6 +1,7 @@
 const path = require("path");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const CopyPlugin = require("copy-webpack-plugin");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 module.exports = {
   entry: "./src/index.tsx",
@@ -24,7 +25,7 @@ module.exports = {
         use: [MiniCssExtractPlugin.loader, "css-loader", "postcss-loader"],
       },
       {
-        test: /\.(png|jpg|gif)$/i,
+        test: /\.(png|jpg|gif|svg)$/i,
         loader: "file-loader",
         options: {
           outputPath: "images",
@@ -33,7 +34,7 @@ module.exports = {
     ],
   },
   resolve: {
-    extensions: [".tsx", ".ts", ".js"],
+    extensions: [".tsx", ".ts", ".jsx", ".js"],
   },
   output: {
     filename: "content.js",
@@ -41,10 +42,18 @@ module.exports = {
   },
   plugins: [
     new MiniCssExtractPlugin({
-      filename: "popup.css",
+      filename: "popup.css", //all styles will be bundled in this file
     }),
     new CopyPlugin({
-      patterns: [{ from: "public/images", to: "images" }],
+      patterns: [
+        { from: "public/images", to: "images" },
+        { from: "public/menifest.json", to: "menifest.json" },
+      ], //copies images from public/images to build/images
+    }),
+    new HtmlWebpackPlugin({
+      //generates popup.html in build folder
+      template: "./public/index.html",
+      filename: "popup.html",
     }),
   ],
 };
