@@ -47,8 +47,7 @@ KEY: 📦 NEW, 👌 IMPROVE, 🐛 FIX, 📖 DOC, 🚀 RELEASE, ✅ DONE, and �
 
 ### Context
 
-The goal of the Yumazoo extension is to create a seamless user experience for accessing and managing recipes. To guide the implementation, we have provided a Figma file that contains the design and layout specifications for the front-end.
-
+The goal of the Yumazoo extension is to create a seamless user experience for accessing and managing recipes.
 One of the key features is to implement a search bar that allows users to search for existing recipes based on their names. The search functionality send a request to the appropriate backend endpoint and display the search results dynamically on the front-end interface. The search bar provide real-time suggestions as the user types, enhancing the usability of the application.
 
 In addition to the search functionality, all other API endpoints are integrated into the front-end application. This includes retrieving a list of recipes, retrieving a specific recipe by ID, and adding a new recipe to the server. The front-end handles HTTP requests and responses appropriately, displaying any error messages returned by the backend API in a user-friendly manner.
